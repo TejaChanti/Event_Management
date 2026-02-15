@@ -7,20 +7,8 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:4173",
-  "https://event-management-sjvm.onrender.com"
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(null, false);
-    }
-    return callback(null, true);
-  },
+  origin: process.env.CLIENT_URL,
   credentials: true
 }));
 
